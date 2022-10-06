@@ -1,4 +1,4 @@
-import { TransactionData, TransactionResponse } from "../types/transactions";
+import { TransactionData, TransactionResponse } from "../utils/types/transactions";
 import { api } from "./api";
 
 export const transactions = {

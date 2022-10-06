@@ -1,4 +1,5 @@
 import { useTransactionContext } from "../../hooks/useTransactionContext";
+import { format } from "../../utils/format";
 import { Container } from "./styles";
 
 export function TransactionTable() {
@@ -19,21 +20,13 @@ export function TransactionTable() {
                 <tbody>
                     {
                         transactions.map((transaction, index) => {
-
-                            let currency = new Intl.NumberFormat('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(transaction.amount)
-
-                            let date = new Intl.DateTimeFormat('pt-BR').format(new Date(transaction.createdAt))
-
                             return (
                                 <tr key={'transaction-' + index}>
                                     <td>{transaction.title}</td>
                                     <td className={transaction.type}>
-                                        {transaction.type === 'withdraw' && '-'} {currency}</td>
+                                        {transaction.type === 'withdraw' && '-'} {format.currency(transaction.amount)}</td>
                                     <td>{transaction.category}</td>
-                                    <td>{date}</td>
+                                    <td>{format.date(new Date(transaction.createdAt))}</td>
                                 </tr>
                             )
                         })
